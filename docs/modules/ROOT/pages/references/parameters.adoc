@@ -6,14 +6,29 @@ The parent key for all of the following parameters is `secrets`.
 
 [horizontal]
 type:: string
-default:: `syn-secrets`
+default:: `default`
 
-The namespace in which to deploy this component.
+Fallback namespace to deploy namespaced secrets to.
 
+== `opaque`
 
-== Example
+[horizontal]
+type:: dictionary
+default:: {}
+
+Create secrets of type `Opaque`.
+
+=== Example
+
+The following example config will result in a Secret `mySecret` in namespace `testing` and a Secret `anotherSecret` in namespace `prod`.
 
 [source,yaml]
 ----
-namespace: example-namespace
+secrets:
+  namespace: prod
+  opaque:
+    testing/mySecret:
+      myKey: myValue
+    anotherSecret:
+      anotherKey: anotherValue
 ----
