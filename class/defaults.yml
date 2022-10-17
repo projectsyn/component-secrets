@@ -1,4 +1,6 @@
 parameters:
   secrets:
     =_metadata: {}
-    namespace: syn-secrets
+    namespace: default
+
+    opaque: {}

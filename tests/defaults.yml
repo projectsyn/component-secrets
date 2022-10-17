@@ -1,3 +1,10 @@
-# Overwrite parameters here
-
-# parameters: {...}
+parameters:
+  secrets:
+    opaque:
+      namespaceA/secretA:
+        keyA: valueA
+        keyB: valueB
+      othernsB/geheimB:
+        keyC: valueC
+      wouldYou:
+        likeToC: valueC
