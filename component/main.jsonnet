@@ -6,10 +6,10 @@ local inv = kap.inventory();
 local params = inv.parameters.secrets;
 
 local namespacedName(name, namespace='') = {
-  local namespacedName = std.splitLimit(name, '/', 1),
+  local namespaced = std.splitLimit(name, '/', 1),
   local ns = if namespace != '' then namespace else params.namespace,
-  namespace: if std.length(namespacedName) > 1 then namespacedName[0] else ns,
-  name: if std.length(namespacedName) > 1 then namespacedName[1] else namespacedName[0],
+  namespace: if std.length(namespaced) > 1 then namespaced[0] else ns,
+  name: if std.length(namespaced) > 1 then namespaced[1] else namespaced[0],
 };
 
 local opaqueSecrets() = [

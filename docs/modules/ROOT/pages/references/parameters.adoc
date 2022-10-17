@@ -10,13 +10,13 @@ default:: `default`
 
 Fallback namespace to deploy namespaced secrets to.
 
-== `opague`
+== `opaque`
 
 [horizontal]
 type:: dictionary
 default:: {}
 
-Create secrets of type `Opague`.
+Create secrets of type `Opaque`.
 
 === Example
 
@@ -26,7 +26,7 @@ The following example config will result in a Secret `mySecret` in namespace `te
 ----
 secrets:
   namespace: prod
-  opague:
+  opaque:
     testing/mySecret:
       myKey: myValue
     anotherSecret:
