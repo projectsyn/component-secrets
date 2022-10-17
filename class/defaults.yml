@@ -1,0 +1,4 @@
+parameters:
+  secrets:
+    =_metadata: {}
+    namespace: syn-secrets
