@@ -4,3 +4,4 @@ parameters:
     namespace: default
 
     opaque: {}
+    secrets: {}

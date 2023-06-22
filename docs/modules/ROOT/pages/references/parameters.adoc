@@ -18,6 +18,16 @@ default:: {}
 
 Create secrets of type `Opaque`.
 
+NOTE: Deprecated: Use `secrets` parameter instead.
+
+== `secrets`
+
+[horizontal]
+type:: dictionary
+default:: {}
+
+Create secrets of any type. Requires a valid partial secret manifest (see example below)
+
 === Example
 
 The following example config will result in a Secret `mySecret` in namespace `testing` and a Secret `anotherSecret` in namespace `prod`.
@@ -31,4 +41,26 @@ secrets:
       myKey: myValue
     anotherSecret:
       anotherKey: anotherValue
+  secrets:
+    myTlsSecret:
+      metadata:
+        name: myTlsSecret
+        namespace: myNamespace
+      type: 'kubernetes.io/tls'
+      stringData:
+        tls.crt: |
+          -----BEGIN CERTIFICATE-----
+          MIIABCDEFGH.....
+          -----END CERTIFICATE-----
+        tls.key: |
+          -----BEGIN PRIVATE KEY-----
+          MIIHGFEDCBA....
+          -----END PRIVATE KEY-----
+    myDockercfgSecret:
+      metadata:
+        name: myDockercfgSecret
+        namespace: testing
+      type: 'kubernetes.io/dockercfg'
+      stringData:
+        dockercfg: ewogICJhdXRocyI6IHsKICAgICJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOiB7CiAgICAgICJhdXRoIjogImFzbGRrZmphbGtnamFsc2tqZmFzbGtkZmoiCiAgICB9CiAgfQp9Cg==
 ----

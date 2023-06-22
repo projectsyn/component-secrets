@@ -2,6 +2,8 @@
 local kap = import 'lib/kapitan.libjsonnet';
 local kube = import 'lib/kube.libjsonnet';
 local inv = kap.inventory();
+local com = import 'lib/commodore.libjsonnet';
+
 // The hiera parameters for the component
 local params = inv.parameters.secrets;
 
@@ -30,7 +32,24 @@ local opaqueSecrets() = [
   for name in std.objectFields(params.opaque)
 ];
 
-// Define outputs below
+local legacy =
+  if std.objectHas(params, 'opaque') then
+    local transformed = {
+      [name]: {
+        metadata: {
+          name: namespacedName(name, '').name,
+          namespace: namespacedName(name, '').namespace,
+        },
+        type: 'Opaque',
+        stringData: params.opaque[name],
+      }
+      for name in std.objectFields(params.opaque)
+    };
+    std.trace('Parameter `opaque` is deprecated. Please migrate to parameter `secrets`.', transformed)
+  else
+    {};
+
+local secrets = legacy + params.secrets;
 {
-  '10_opaque': opaqueSecrets(),
+  '10_secrets': std.prune(com.generateResources(secrets, kube.Secret)),
 }
