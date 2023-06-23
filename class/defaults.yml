@@ -3,4 +3,4 @@ parameters:
     =_metadata: {}
     namespace: default
 
-    opaque: {}
+    secrets: {}

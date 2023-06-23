@@ -8,3 +8,34 @@ parameters:
         keyC: valueC
       wouldYou:
         likeToC: valueC
+    secrets:
+      namespaceA/tlsA:
+        type: 'kubernetes.io/tls'
+        stringData:
+          'tls.crt': |
+            -----BEGIN CERTIFICATE-----
+            MIIABCDEFGH.....
+            -----END CERTIFICATE-----
+          'tls.key': |
+            -----BEGIN PRIVATE KEY-----
+            MIIHGFEDCBA....
+            -----END PRIVATE KEY-----
+      tlsB:
+        type: 'kubernetes.io/tls'
+        stringData:
+          'tls.crt': |
+            -----BEGIN CERTIFICATE-----
+            MIIUVWXYZ.....
+            -----END CERTIFICATE-----
+          'tls.key': |
+            -----BEGIN PRIVATE KEY-----
+            MIIZYXWVU....
+            -----END PRIVATE KEY-----
+      namespaceA/dockercfgA:
+        type: 'kubernetes.io/dockercfg'
+        stringData:
+          dockercfg: ewogICJhdXRocyI6IHsKICAgICJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOiB7CiAgICAgICJhdXRoIjogImFzbGRrZmphbGtnamFsc2tqZmFzbGtkZmoiCiAgICB9CiAgfQp9Cg==
+      dockercfgB:
+        type: 'kubernetes.io/dockercfg'
+        stringData:
+          dockercfg: ewogICJhdXRocyI6IHsKICAgICJodHRwczovL3JlZ2lzdHJ5LmdpdGxhYi5jb20iOiB7CiAgICAgICJhdXRoIjogIndlcm9pbGthc2RmYXNsa2Fqc2ZkaSIKICAgIH0KICB9Cn0K
