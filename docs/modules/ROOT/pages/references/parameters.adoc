@@ -27,6 +27,7 @@ type:: dictionary
 default:: {}
 
 Create secrets of any type. Requires a valid partial secret manifest (see example below)
+If you omit field `type` from your secret definitions, the component will default to `type: Opaque`.
 
 === Example
 
