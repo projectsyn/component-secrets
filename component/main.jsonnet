@@ -32,15 +32,19 @@ local opaqueSecrets() = [
   for name in std.objectFields(params.opaque)
 ];
 
+local namespaced(secrets) = {
+  [namespacedName(name).name]: secrets[name] {
+    metadata+: {
+      namespace: namespacedName(name).namespace,
+    },
+  }
+  for name in std.objectFields(secrets)
+};
+
 local legacy =
   if std.objectHas(params, 'opaque') then
     local transformed = {
       [name]: {
-        metadata: {
-          name: namespacedName(name, '').name,
-          namespace: namespacedName(name, '').namespace,
-        },
-        type: 'Opaque',
         stringData: params.opaque[name],
       }
       for name in std.objectFields(params.opaque)
@@ -49,7 +53,7 @@ local legacy =
   else
     {};
 
-local secrets = legacy + params.secrets;
+local secrets = namespaced(legacy + params.secrets);
 {
   '10_secrets': std.prune(com.generateResources(secrets, kube.Secret)),
 }

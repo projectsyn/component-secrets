@@ -9,10 +9,7 @@ parameters:
       wouldYou:
         likeToC: valueC
     secrets:
-      tlsA:
-        metadata:
-          name: tlsA
-          namespace: namespaceA
+      namespaceA/tlsA:
         type: 'kubernetes.io/tls'
         stringData:
           'tls.crt': |
@@ -24,9 +21,6 @@ parameters:
             MIIHGFEDCBA....
             -----END PRIVATE KEY-----
       tlsB:
-        metadata:
-          name: tlsB
-          namespace: othernsB
         type: 'kubernetes.io/tls'
         stringData:
           'tls.crt': |
@@ -37,17 +31,11 @@ parameters:
             -----BEGIN PRIVATE KEY-----
             MIIZYXWVU....
             -----END PRIVATE KEY-----
-      dockercfgA:
-        metadata:
-          name: dockercfgA
-          namespace: namespaceA
+      namespaceA/dockercfgA:
         type: 'kubernetes.io/dockercfg'
         stringData:
           dockercfg: ewogICJhdXRocyI6IHsKICAgICJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOiB7CiAgICAgICJhdXRoIjogImFzbGRrZmphbGtnamFsc2tqZmFzbGtkZmoiCiAgICB9CiAgfQp9Cg==
       dockercfgB:
-        metadata:
-          name: dockercfgB
-          namespace: othernsB
         type: 'kubernetes.io/dockercfg'
         stringData:
           dockercfg: ewogICJhdXRocyI6IHsKICAgICJodHRwczovL3JlZ2lzdHJ5LmdpdGxhYi5jb20iOiB7CiAgICAgICJhdXRoIjogIndlcm9pbGthc2RmYXNsa2Fqc2ZkaSIKICAgIH0KICB9Cn0K

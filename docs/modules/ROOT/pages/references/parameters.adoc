@@ -42,10 +42,7 @@ secrets:
     anotherSecret:
       anotherKey: anotherValue
   secrets:
-    myTlsSecret:
-      metadata:
-        name: myTlsSecret
-        namespace: myNamespace
+    myNamespace/myTlsSecret:
       type: 'kubernetes.io/tls'
       stringData:
         tls.crt: |
@@ -56,10 +53,7 @@ secrets:
           -----BEGIN PRIVATE KEY-----
           MIIHGFEDCBA....
           -----END PRIVATE KEY-----
-    myDockercfgSecret:
-      metadata:
-        name: myDockercfgSecret
-        namespace: testing
+    testing/myDockercfgSecret:
       type: 'kubernetes.io/dockercfg'
       stringData:
         dockercfg: ewogICJhdXRocyI6IHsKICAgICJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOiB7CiAgICAgICJhdXRoIjogImFzbGRrZmphbGtnamFsc2tqZmFzbGtkZmoiCiAgICB9CiAgfQp9Cg==
