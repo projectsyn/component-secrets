@@ -20,6 +20,17 @@ parameters:
             -----BEGIN PRIVATE KEY-----
             MIIHGFEDCBA....
             -----END PRIVATE KEY-----
+      namespaceB/tlsA:
+        type: 'kubernetes.io/tls'
+        stringData:
+          'tls.crt': |
+            -----BEGIN CERTIFICATE-----
+            MIIABCDEFGH.....
+            -----END CERTIFICATE-----
+          'tls.key': |
+            -----BEGIN PRIVATE KEY-----
+            MIIHGFEDCBA....
+            -----END PRIVATE KEY-----
       tlsB:
         type: 'kubernetes.io/tls'
         stringData:

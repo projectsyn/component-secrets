@@ -33,9 +33,10 @@ local opaqueSecrets() = [
 ];
 
 local namespaced(secrets) = {
-  [namespacedName(name).name]: secrets[name] {
+  ['%(namespace)s_%(name)s' % namespacedName(name)]: secrets[name] {
     metadata+: {
       namespace: namespacedName(name).namespace,
+      name: namespacedName(name).name,
     },
   }
   for name in std.objectFields(secrets)
