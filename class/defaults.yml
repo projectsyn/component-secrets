@@ -1,6 +1,7 @@
 parameters:
   secrets:
-    =_metadata: {}
+    =_metadata:
+      multi_tenant: true
     namespace: default
 
     secrets: {}
